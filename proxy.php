@@ -9,12 +9,8 @@ foreach (getallheaders() as $header => $value) {
   $request_headers[] = $header . ": " . $value;
 }
  
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_HEADER, true);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$response = curl_exec($ch);
+$context = stream_context_create($request_headers);
+$response = file_get_contents($_GET["url"], false, $context);
 $response_headers = explode("\r\n", substr($response, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE)));
 $response_body = substr($response, curl_getinfo($ch, CURLINFO_HEADER_SIZE));
 curl_close($ch);
