@@ -1,9 +1,0 @@
-{
-    "name": "possibly-proxy",
-    "version": "0.0.0",
-    "private": true,
-    "scripts": {},
-    "dependencies": {
-        "php": "^1.0.2"
-    }
-}
